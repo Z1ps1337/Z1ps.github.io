@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Данил & Полина • 1 год вместе</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap');
+
+        :root {
+            --silver: #c0c0c0;
+            --light-silver: #e8e8e8;
+            --dark-gray: #1f1f1f;
+            --accent: #b8b8b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1f1f1f 0%, #2a2a2a 100%);
+            color: var(--silver);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(31, 31, 31, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(192, 192, 192, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            color: var(--silver);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo::after {
+            content: "❤️";
+            font-size: 1.4rem;
+            animation: heartbeat 1.8s infinite ease-in-out;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--silver);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background: var(--silver);
+            transition: width 0.4s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(31,31,31,0.75), rgba(31,31,31,0.85)), url('https://picsum.photos/id/1015/2000/1200') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, rgba(192,192,192,0.15) 0%, transparent 70%);
+            animation: silver-glow 8s infinite alternate ease-in-out;
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4.8rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 40px rgba(192,192,192,0.6);
+            animation: fadeInUp 1.2s ease forwards;
+        }
+
+        .hero .subtitle {
+            font-size: 1.6rem;
+            color: var(--silver);
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1.4s ease forwards 0.3s;
+            opacity: 0;
+        }
+
+        .anniversary-date {
+            font-size: 1.3rem;
+            color: var(--accent);
+            letter-spacing: 4px;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1.6s ease forwards 0.6s;
+            opacity: 0;
+        }
+
+        .heart-container {
+            position: absolute;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 40px;
+        }
+
+        .floating-heart {
+            font-size: 3rem;
+            color: #ff9a9e;
+            animation: floatHeart 3s infinite ease-in-out;
+            opacity: 0.85;
+        }
+
+        .floating-heart:nth-child(2) { animation-delay: 0.6s; font-size: 2.4rem; }
+        .floating-heart:nth-child(3) { animation-delay: 1.2s; }
+
+        .btn {
+            padding: 14px 42px;
+            background: transparent;
+            border: 2px solid var(--silver);
+            color: var(--silver);
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: var(--silver);
+            color: #1f1f1f;
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(192,192,192,0.5);
+        }
+
+        section {
+            padding: 120px 8%;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3.2rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #fff;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 2px;
+            background: var(--silver);
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* История */
+        .history {
+            background: #252525;
+        }
+
+        .history-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .history-text {
+            font-size: 1.25rem;
+            color: var(--light-silver);
+        }
+
+        .history-text p {
+            margin-bottom: 1.8rem;
+        }
+
+        /* Галерея */
+        .gallery {
+            background: linear-gradient(135deg, #1f1f1f, #2a2a2a);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 32px;
+            background: transparent;
+            border: 1px solid var(--silver);
+            color: var(--silver);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s;
+            font-weight: 500;
+        }
+
+        .tab-btn.active {
+            background: var(--silver);
+            color: #1f1f1f;
+        }
+
+        .gallery-content {
+            display: none;
+        }
+
+        .gallery-content.active {
+            display: block;
+        }
+
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .photo-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .photo-card:hover {
+            transform: scale(1.06) translateY(-12px);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.12);
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            color: white;
+            padding: 1.5rem;
+            font-size: 1.1rem;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .photo-card:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.92);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border: 8px solid var(--silver);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2.5rem;
+            color: var(--silver);
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        /* Послание */
+        .love-letter {
+            background: #1f1f1f;
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 4rem 3rem;
+            border: 1px solid var(--silver);
+            border-radius: 20px;
+            box-shadow: 0 0 60px rgba(192,192,192,0.15);
+            position: relative;
+        }
+
+        .love-letter::before {
+            content: "❤️";
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 4rem;
+            color: #ff9a9e;
+        }
+
+        .love-text {
+            font-size: 1.35rem;
+            color: var(--light-silver);
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* Анимации */
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        @keyframes floatHeart {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-40px) rotate(15deg); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes silver-glow {
+            from { opacity: 0.6; }
+            to { opacity: 0.95; }
+        }
+
+/* Музыкальный плеер */
+.music-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 900;
+    background: rgba(31, 31, 31, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--silver);
+    border-radius: 50px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+}
+
+.music-player:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(192,192,192,0.2);
+}
+
+.player-btn {
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: 2px solid var(--silver);
+    border-radius: 50%;
+    color: var(--silver);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.player-btn:hover {
+    background: var(--silver);
+    color: #1f1f1f;
+    transform: scale(1.1);
+}
+
+.volume-control {
+    width: 100px;
+}
+
+#volumeSlider {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 6px;
+    background: rgba(192,192,192,0.3);
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+#volumeSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--silver);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(192,192,192,0.6);
+}
+
+#volumeSlider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: var(--silver);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(192,192,192,0.6);
+}
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #1f1f1f;
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            .history-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- НАВИГАЦИЯ -->
+    <nav class="navbar">
+        <a href="#" class="logo">Данил &amp; Полина</a>
+        
+        <div class="nav-links" id="navLinks">
+            <a href="#home">Главная</a>
+            <a href="#history">Наша история</a>
+            <a href="#gallery">Галерея</a>
+            <a href="#letter">Послание</a>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">☰</div>
+    </nav>
+
+    <!-- ГЛАВНАЯ -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>1 год вместе</h1>
+            <p class="subtitle">Моя любимая Полина, с тобой каждый день — это праздник</p>
+            <div class="anniversary-date">
+                17 марта 2025 — 17 марта 2026
+            </div>
+            
+            <div class="heart-container">
+                <div class="floating-heart">❤️</div>
+                <div class="floating-heart">💫</div>
+                <div class="floating-heart">❤️</div>
+            </div>
+
+            <a href="#gallery" class="btn">Посмотреть наши моменты</a>
+        </div>
+    </section>
+
+    <!-- ИСТОРИЯ -->
+    <section id="history" class="history">
+        <h2 class="section-title">Наша история</h2>
+        
+        <div class="history-grid">
+            <div>
+                <img src="polina.jpg" 
+                     alt="День нашего знакомства" 
+                     style="width:100%; border-radius:16px; box-shadow:0 20px 40px rgba(0,0,0,0.5);">
+            </div>
+            
+            <div class="history-text">
+                <p>17 марта 2025 года… Именно в этот день наши пути пересеклись. Я, поцеловал тебя, и сразу понял — это навсегда.</p>
+                <p>За этот год мы прошли через смех, объятия, первые совместные поездки, первые «я тебя люблю» и тысячи маленьких моментов, которые теперь стали самыми дорогими воспоминаниями.</p>
+                <p>Ты — моё всё. Ты — мой самый любимый человек. Спасибо, что выбрала меня.</p>
+                <p style="margin-top: 2rem; font-style: italic; color: #b8b8b8;">
+                    С любовью, твой Данил ❤️
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ГАЛЕРЕЯ -->
+    <section id="gallery" class="gallery">
+        <h2 class="section-title">Галерея наших моментов</h2>
+
+        <!-- Табы -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="tab1">День знакомства</button>
+            <button class="tab-btn" data-tab="tab2">Первые подарки</button>
+            <button class="tab-btn" data-tab="tab3">Наши фотки</button>
+        </div>
+
+        <!-- Содержимое табов -->
+
+        <!-- Таб 1: День знакомства -->
+        <div id="tab1" class="gallery-content active">
+            <div class="photos-grid">
+                <div class="photo-card" onclick="openModal(this)">
+                    <img src="klasi.jpg" alt="День первого знакомства 17.03.2025">
+                    <div class="photo-overlay">17 марта 2025 — день, когда всё началось</div>
+                </div>
+                <div class="photo-card" onclick="openModal(this)">
+                    <img src="sovmestka.jpg" alt="Наше первое селфи">
+                    <div class="photo-overlay">Первое совместное фото</div>
+                </div>
+                <div class="photo-card" onclick="openModal(this)">
+                    <img src="trend.jpg" alt="Первый тренд">
+                    <div class="photo-overlay">Первые тренд вместе</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Таб 2: Подарки -->
+        <div id="tab2" class="gallery-content">
+            <div class="photos-grid">
+                <div class="photo-card" onclick="openModal(this)">
+                    <img src="pauk.jpg" alt="Парные подарки">
+                    <div class="photo-overlay">Наши первые парные подарки ❤️</div>
+                </div>
+                <div class="photo-card" onclick="openModal(this)">
+                    <img src="chel.jpg" alt="Твой подарок мне">
+                    <div class="photo-overlay">То, что ты подарила мне</div>
+                </div>
+                <div class="photo-card" onclick="openModal(this)">
+                    <img src="podar.jpg" alt="Мой подарок тебе">
+                    <div class="photo-overlay">То, что я подарил тебе</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Таб 3: Наши фотки + слова -->
+        <div id="tab3" class="gallery-content">
+            <div class="photos-grid">
+                <div class="photo-card" onclick="openModal(this)">
+                    <img src="mi.jpg" alt="Мы вместе">
+                    <div class="photo-overlay">Я люблю тебя за твою улыбку</div>
+                </div>
+                <div class="photo-card" onclick="openModal(this)">
+                    <img src="progulka.jpg" alt="Наша фоточка">
+                    <div class="photo-overlay">Я люблю тебя за то, как ты смеёшься над моими шутками</div>
+                </div>
+                <div class="photo-card" onclick="openModal(this)">
+                    <img src="noch.jpg" alt="Ночёвка)">
+                    <div class="photo-overlay">Я люблю тебя просто за то, что ты — это ты</div>
+                </div>
+                <div class="photo-card" onclick="openModal(this)">
+                    <img src="samie.jpg" alt="Самое счастливое селфи">
+                    <div class="photo-overlay">Ты — моё сокровище, мой самый любимый котёнок</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПОСЛАНИЕ -->
+    <section id="letter">
+        <div class="love-letter">
+            <h2 style="text-align:center; margin-bottom:2rem; color:#fff;">Полина, с годовщиной!</h2>
+            
+            <p class="love-text">
+                Моя дорогая Полина,<br><br>
+                Сегодня ровно год, как ты в моей жизни. За эти 365 дней я влюблялся в тебя каждый день заново.<br><br>
+                Ты — моё спокойствие, моя радость, мой самый тёплый серебристый свет.<br>
+                Спасибо, что позволяешь мне быть рядом. Спасибо за каждую улыбку, за каждое «я тебя тоже», за каждый взгляд.<br><br>
+                Я обещаю любить тебя ещё сильнее во всех годах.<br><br>
+                Твой навсегда,<br>
+                <strong>Данил</strong> ❤️
+            </p>
+        </div>
+    </section>
+
+    <!-- ФУТЕР -->
+    <footer style="background:#181818; padding:3rem 8%; text-align:center; color:#888; font-size:0.95rem;">
+        <p>Сайт создан с огромной любовью специально для тебя, Полина.</p>
+        <p style="margin-top:1rem;">Данил • 17 марта 2026</p>
+    </footer>
+
+    <!-- МОДАЛЬНОЕ ОКНО -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">×</span>
+            <img id="modalImage" src="" alt="" style="width:100%; display:block;">
+        </div>
+    </div>
+
+<!-- Музыкальный плеер -->
+<div class="music-player">
+    <audio id="bgMusic" loop>
+        <source src="u will be my girl.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио.
+    </audio>
+
+    <button id="playPauseBtn" class="player-btn" title="Включить / выключить музыку">
+        ▶️
+    </button>
+
+    <div class="volume-control">
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.4">
+    </div>
+</div>
+
+    <script>
+        // Мобильное меню
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Плавный скролл
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    if (navLinks.classList.contains('active')) navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Табы галереи
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.gallery-content');
+
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Убираем active у всех
+                tabButtons.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+
+                // Добавляем active
+                btn.classList.add('active');
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Модальное окно
+        function openModal(card) {
+            const imgSrc = card.querySelector('img').src;
+            document.getElementById('modalImage').src = imgSrc;
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        // Закрытие модалки по клику вне изображения
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target.id === 'modal') {
+                closeModal();
+            }
+        });
+
+        // Анимация появления секций при скролле
+        function animateOnScroll() {
+            const sections = document.querySelectorAll('section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(40px)';
+                section.style.transition = 'all 1s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                observer.observe(section);
+            });
+        }
+
+        // Конфетти-сердечки при загрузке (лёгкая анимация)
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.textContent = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '-50px';
+            heart.style.fontSize = Math.random() * 20 + 18 + 'px';
+            heart.style.opacity = '0.7';
+            heart.style.zIndex = '999';
+            heart.style.pointerEvents = 'none';
+            document.body.appendChild(heart);
+
+            const duration = Math.random() * 4000 + 3500;
+            heart.animate([
+                { transform: 'translateY(0) rotate(0deg)', opacity: 0.7 },
+                { transform: `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+            ], {
+                duration: duration,
+                easing: 'linear'
+            });
+
+            setTimeout(() => heart.remove(), duration);
+        }
+
+        // Запуск всего
+        window.onload = function() {
+            animateOnScroll();
+
+// Попытка автозапуска (часто блокируется)
+audio.play().catch(() => {
+    console.log("Автозапуск заблокирован — пользователь должен нажать кнопку");
+});
+            
+            // Лёгкий дождь из сердечек в герое
+            setInterval(() => {
+                if (Math.random() > 0.6) createHeart();
+            }, 280);
+
+        };
+
+// Управление музыкой
+const audio = document.getElementById('bgMusic');
+const playPauseBtn = document.getElementById('playPauseBtn');
+const volumeSlider = document.getElementById('volumeSlider');
+
+// Начальная громкость
+audio.volume = volumeSlider.value;
+
+// Play / Pause
+playPauseBtn.addEventListener('click', () => {
+    if (audio.paused) {
+        audio.play().catch(e => {
+            console.log("Автозапуск заблокирован браузером. Нажмите кнопку вручную.");
+        });
+        playPauseBtn.textContent = '⏸️';
+    } else {
+        audio.pause();
+        playPauseBtn.textContent = '▶️';
+    }
+});
+
+// Громкость
+volumeSlider.addEventListener('input', () => {
+    audio.volume = volumeSlider.value;
+});
+
+// Показываем, что музыка загрузилась (опционально)
+audio.addEventListener('canplay', () => {
+    playPauseBtn.disabled = false;
+    playPauseBtn.style.opacity = '1';
+});
+
+    </script>
+</body>
+</html>
